@@ -1,0 +1,24 @@
+﻿zzz@zzz-VirtualBox:~$ pwd
+/home/zzz
+zzz@zzz-VirtualBox:~$ cat -> homeAnimals
+кошки
+собаки
+хомячки
+zzz@zzz-VirtualBox:~$ cat -> packAnimals
+лошадки
+верблюды
+ослы
+zz@zzz-VirtualBox:~$ cat homeAnimals packAnimals > manFriends
+zzz@zzz-VirtualBox:~$ cat manFriends
+кошки
+собаки
+хомячки
+лошадки
+верблюды
+ослы
+zzz@zzz-VirtualBox:~$ mv manFriends FriendsHuman
+zzz@zzz-VirtualBox:~$ mkdir newDir
+zzz@zzz-VirtualBox:~$ mv FriendsHuman newDir/
+zzz@zzz-VirtualBox:~$ tree
+├── newDir
+│   └── FriendsHuman
