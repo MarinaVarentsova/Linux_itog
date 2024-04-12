@@ -3,41 +3,41 @@ from os.path import exists
 from datetime import datetime
 
 
-path = "note.cvs"
+path = "note_animals.cvs"
 
 
 def path_file():
     if not exists(path):
-        create_file()
+        create_file_animals()
         return path
     return path
 
 
-def create_file():
-    with open('note.cvs', 'w', encoding='utf-8') as data:
-        data.write("note_id,title,body,date\n")
+def create_file_animals():
+    with open('note_animals.cvs', 'w', encoding='utf-8') as data:
+        data.write("name,age,type\n")
         data.close()
 
 
 def read_file(path):
     with open(path, 'r', encoding='utf-8') as data:
-        note_book = data.readlines()
+        registry = data.readlines()
         data.close()
-    return note_book
+    return registry
 
 
 def write_file(info):
     with open(path, 'a', encoding='utf-8') as data:
-        data.write(f'{info[0]},{info[1]},{info[2]},{info[3]}\n')
+        data.write(f'{info[0]},{info[1]},{info[2]}\n')
     data.close()
 
 
 def find_for_change_file(path):
-    note = input("введите текст для поиска заметки\nпо заголовку либо по содержанию: ")
+    note_name = input("введите имя для поиска животного: ")
     with open(path, 'r', encoding='utf-8') as data:
-        note_book = data.readlines()
-        for i, line in enumerate(note_book):
-            if note in line.strip():
+        note_animals = data.readlines()
+        for i, line in enumerate(note_animals):
+            if note_name in line.strip():
                 if i == 0:
                     print(f"fieldnames: ", line.strip())
                 else:
@@ -45,7 +45,7 @@ def find_for_change_file(path):
         flag = False
         while not flag:
             try:
-                number = int(input("выберите номер заметки для изменения: "))
+                number = int(input("выберите номер животного для обучения: "))
                 if number < 0:
                     print('wrong note')
                     flag = False
@@ -65,22 +65,20 @@ def find_for_change_file(path):
 def change_file(path, number):
     with open(path, "r") as csv_file:
         csv_reader = csv.DictReader(csv_file)
-        note_book = []
+        note_animals = []
         for row in csv_reader:
             print(row)
-            note_book.append(row)
+            note_animals.append(row)
     print('\n')
-    to_update = note_book[number].values()
+    to_update = note_animals[number].values()
     print(f"Number №{number+1} будет изменен, текущие данные: ", to_update)
-    title = input("Введите новое название заметки: ")
-    new_title = f'{title}'
-    body = input("Введите новый текст заметки: ")
-    new_body = f'{body}'
+    command = input("Введите новую команду: ")
+    new_command = f'{command}'
     with open(path, 'w', newline='') as csv_file:
-        fieldnames = note_book[0].keys()
+        fieldnames = note_animals[0].keys()
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
-        for row in note_book:
+        for row in note_animals:
             if set(to_update).issubset(set(row.values())):
                 row['title'] = new_title
             if set(to_update).issubset(set(row.values())):
